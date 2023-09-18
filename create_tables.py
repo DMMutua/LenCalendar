@@ -1,13 +1,18 @@
 import os
+import configparser
 import psycopg2
 from psycopg2 import sql
 
+# Read Config File for Credentials
+config = configparser.ConfigParser()
+config.read('./config.ini')
+
 # DB Configuration
-DB_NAME = "db_name_here"
-DB_USER = "db_user_here"
-DB_PASSWORD = "db_password_here"
-DB_HOST = "localhost" # localhost
-DB_PORT = "5432" # 5432
+DB_NAME = config.get('credentials', 'DB_NAME')
+DB_USER = config.get('credentials', 'DB_USER')
+DB_PASSWORD = config.get('credentials', 'DB_PASSWORD')
+DB_HOST = config.get('credentials', 'DB_HOST')
+DB_PORT = config.get('credentials', 'DB_PORT')
 
 # SQL File Path
 SQL_FILE = "events_table.sql"
